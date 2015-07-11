@@ -6,12 +6,12 @@ Probability Density Function
 
 The [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) (PDF) for a [Laplace](https://en.wikipedia.org/wiki/Laplace_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="" data-equation="eq:pdf_function">
+<div class="equation" align="center" data-raw-text="f(x\mid\mu,b) = \frac{1}{2b} \exp \left( -\frac{|x-\mu|}{b} \right)" data-equation="eq:pdf_function">
 	<img src="" alt="Probability density function (PDF) for a Laplace distribution.">
 	<br>
 </div>
 
-where `mu` is the location parameter and `b` is the scale parameter.
+where `mu` is the location parameter and `b` is the scale parameter (also called diversity).
 
 ## Installation
 
