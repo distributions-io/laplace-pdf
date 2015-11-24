@@ -7,7 +7,7 @@ Probability Density Function
 The [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) (PDF) for a [Laplace](https://en.wikipedia.org/wiki/Laplace_distribution) random variable is
 
 <div class="equation" align="center" data-raw-text="f(x\mid\mu,b) = \frac{1}{2b} \exp \left( -\frac{|x-\mu|}{b} \right)" data-equation="eq:pdf_function">
-	<img src="" alt="Probability density function (PDF) for a Laplace distribution.">
+	<img src="https://cdn.rawgit.com/distributions-io/laplace-pdf/884ff6dc5dfce1df5606c924ab9b15d7017e0212/docs/img/eqn.svg" alt="Probability density function (PDF) for a Laplace distribution.">
 	<br>
 </div>
 
