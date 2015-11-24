@@ -1,6 +1,6 @@
 Probability Density Function
 ===
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > [Laplace](https://en.wikipedia.org/wiki/Laplace_distribution) distribution probability density function (PDF).
 
@@ -384,8 +384,8 @@ Copyright &copy; 2015. The [Compute.io](https://github.com/compute-io) Authors.
 [travis-image]: http://img.shields.io/travis/distributions-io/laplace-pdf/master.svg
 [travis-url]: https://travis-ci.org/distributions-io/laplace-pdf
 
-[coveralls-image]: https://img.shields.io/coveralls/distributions-io/laplace-pdf/master.svg
-[coveralls-url]: https://coveralls.io/r/distributions-io/laplace-pdf?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/github/distributions-io/laplace-pdf/master.svg
+[codecov-url]: https://codecov.io/github/distributions-io/laplace-pdf?branch=master
 
 [dependencies-image]: http://img.shields.io/david/distributions-io/laplace-pdf.svg
 [dependencies-url]: https://david-dm.org/distributions-io/laplace-pdf
