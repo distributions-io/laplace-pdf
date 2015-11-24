@@ -21,7 +21,7 @@ var expect = chai.expect,
 describe( 'deepset pdf', function tests() {
 
 	var mu = 0,
-		b = 1;
+		b = 3;
 
 	it( 'should export a function', function test() {
 		expect( pdf ).to.be.a( 'function' );
@@ -43,7 +43,13 @@ describe( 'deepset pdf', function tests() {
 		data = pdf( data, mu, b, 'x' );
 
 		expected = [
-
+			{'x':0.06131324019524039},
+			{'x':0.08556951983876533},
+			{'x':0.1194218850956315},
+			{'x':0.1666666666666667},
+			{'x':0.1194218850956315},
+			{'x':0.08556951983876533},
+			{'x':0.06131324019524039}
 		];
 
 		for ( i = 0; i < data.length; i++ ) {
@@ -63,7 +69,13 @@ describe( 'deepset pdf', function tests() {
 
 		data = pdf( data, mu, b, 'x/1', '/' );
 		expected = [
-
+			{'x':[9,0.06131324019524039]},
+			{'x':[9,0.08556951983876533]},
+			{'x':[9,0.1194218850956315]},
+			{'x':[9,0.1666666666666667]},
+			{'x':[9,0.1194218850956315]},
+			{'x':[9,0.08556951983876533]},
+			{'x':[9,0.06131324019524039]}
 		];
 
 		for ( i = 0; i < data.length; i++ ) {

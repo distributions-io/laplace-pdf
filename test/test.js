@@ -128,7 +128,10 @@ describe( 'distributions-laplace-pdf', function tests() {
 	});
 
 	it( 'should compute the Laplace pdf when provided a number', function test() {
-		assert.strictEqual( pdf( -1 ), 0 );
+		assert.closeTo( pdf( -1 ), 0.18393972058572114, 1e-14 );
+
+		assert.closeTo( pdf( -1,{mu: 0, b: 2}), 0.1516326649281584, 1e-14 );
+		assert.closeTo( pdf( -1 ), 0.18393972058572114, 1e-14 );
 	});
 
 	it( 'should evaluate the Laplace pdf when provided a plain array', function test() {
@@ -136,7 +139,13 @@ describe( 'distributions-laplace-pdf', function tests() {
 
 		data = [ -3, -2, -1, 0, 1, 2, 3 ];
 		expected = [
-
+			0.02489353418393197,
+			0.06766764161830635,
+			0.1839397205857212,
+			0.5,
+			0.1839397205857212,
+			0.06766764161830635,
+			0.02489353418393197
 		];
 
 		actual = pdf( data );
@@ -160,10 +169,16 @@ describe( 'distributions-laplace-pdf', function tests() {
 	it( 'should evaluate the Laplace pdf when provided a typed array', function test() {
 		var data, actual, expected, i;
 
-		data = new Int8Array( [ -3, -2, -1, 0, 1, 2, 3 ] );
+		data = new Float64Array( [ -3, -2, -1, 0, 1, 2, 3 ] );
 
 		expected = new Float64Array([
-
+			0.02489353418393197,
+			0.06766764161830635,
+			0.1839397205857212,
+			0.5,
+			0.1839397205857212,
+			0.06766764161830635,
+			0.02489353418393197
 		]);
 
 		actual = pdf( data );
@@ -177,8 +192,14 @@ describe( 'distributions-laplace-pdf', function tests() {
 		actual = pdf( data, {
 			'copy': false
 		});
-		expected = new Int8Array([
-
+		expected = new Float64Array([
+			0.02489353418393197,
+			0.06766764161830635,
+			0.1839397205857212,
+			0.5,
+			0.1839397205857212,
+			0.06766764161830635,
+			0.02489353418393197
 		]);
 		assert.strictEqual( actual, data );
 
@@ -191,16 +212,22 @@ describe( 'distributions-laplace-pdf', function tests() {
 		var data, actual, expected;
 
 		data = [ -3, -2, -1, 0, 1, 2, 3 ];
-		expected = new Int8Array([
-
+		expected = new Float32Array([
+			0.02489353418393197,
+			0.06766764161830635,
+			0.1839397205857212,
+			0.5,
+			0.1839397205857212,
+			0.06766764161830635,
+			0.02489353418393197
 		]);
 
 		actual = pdf( data, {
-			'dtype': 'int8'
+			'dtype': 'float32'
 		});
 
 		assert.notEqual( actual, data );
-		assert.strictEqual( actual.BYTES_PER_ELEMENT, 1 );
+		assert.strictEqual( actual.BYTES_PER_ELEMENT, 4 );
 		assert.deepEqual( actual, expected );
 	});
 
@@ -218,7 +245,13 @@ describe( 'distributions-laplace-pdf', function tests() {
 		];
 
 		expected = [
-
+			0.02489353418393197,
+			0.06766764161830635,
+			0.1839397205857212,
+			0.5,
+			0.1839397205857212,
+			0.06766764161830635,
+			0.02489353418393197
 		];
 
 		actual = pdf( data, {
@@ -259,7 +292,13 @@ describe( 'distributions-laplace-pdf', function tests() {
 			{'x':[6,3]}
 		];
 		expected = [
-
+			{'x':[0,0.02489353418393197]},
+			{'x':[1,0.06766764161830635]},
+			{'x':[2,0.1839397205857212]},
+			{'x':[3,0.5]},
+			{'x':[4,0.1839397205857212]},
+			{'x':[5,0.06766764161830635]},
+			{'x':[6,0.02489353418393197]}
 		];
 
 		actual = pdf( data, {
@@ -304,7 +343,7 @@ describe( 'distributions-laplace-pdf', function tests() {
 		d2 = new Float64Array( 25 );
 		for ( i = 0; i < d1.length; i++ ) {
 			d1[ i ] = i / 5;
-			d2[ i ] = PDF( i / 5 );
+			d2[ i ] = PDF( i / 5, 0, 1 );
 		}
 		mat = matrix( d1, [5,5], 'float64' );
 		out = pdf( mat );
@@ -330,7 +369,7 @@ describe( 'distributions-laplace-pdf', function tests() {
 		d2 = new Float32Array( 25 );
 		for ( i = 0; i < d1.length; i++ ) {
 			d1[ i ] = i / 5;
-			d2[ i ] = PDF( i / 5 );
+			d2[ i ] = PDF( i / 5, 0, 1 );
 		}
 		mat = matrix( d1, [5,5], 'float64' );
 		out = pdf( mat, {

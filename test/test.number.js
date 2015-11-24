@@ -28,7 +28,7 @@ describe( 'number pdf', function tests() {
 	});
 
 	it( 'should evaluate the Laplace probability density function', function test() {
-		assert.closeTo( pdf( 2, mu, b ),  , 1e-4 );
+		assert.closeTo( pdf( 2, mu, b ), 0.06766764161830635, 1e-14 );
 	});
 
 });

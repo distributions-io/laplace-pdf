@@ -20,7 +20,7 @@ var expect = chai.expect,
 
 describe( 'array pdf', function tests() {
 
-	var mu = 0,
+	var mu = -2,
 		b = 1;
 
 	it( 'should export a function', function test() {
@@ -51,7 +51,19 @@ describe( 'array pdf', function tests() {
 		actual = pdf( actual, data, mu, b );
 
 		expected = [
-
+			0.06766764161830635,
+			0.06766764161830635,
+			0.06766764161830635,
+			0.06766764161830635,
+			0.03040503131260899,
+			0.1505971059561011,
+			0.02489353418393197,
+			0.1839397205857212,
+			3.072106176664105e-06,
+			0.0001677313139512559,
+			0.009157819444367089,
+			0.5,0.003368973499542734,
+			0.1839397205857212
 		];
 
 		for ( i = 0; i < actual.length; i++ ) {

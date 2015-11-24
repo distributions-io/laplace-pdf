@@ -33,4 +33,11 @@ describe( 'number pdf', function tests() {
 		expect( pdf ).to.be.a( 'function' );
 	});
 
+	it( 'should return a function which evaluates the Laplace probability density function', function test() {
+		var pdf;
+		pdf = partial( mu, b);
+		assert.closeTo( pdf( 2, mu, b ), 0.06766764161830635, 1e-14 );
+	});
+
+
 });
