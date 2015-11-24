@@ -11,7 +11,7 @@ The [probability density function](https://en.wikipedia.org/wiki/Probability_den
 	<br>
 </div>
 
-where `mu` is the location parameter and `b` is the scale parameter (also called diversity).
+where `mu` is the location parameter and `b > 0` is the scale parameter (also called diversity).
 
 ## Installation
 
@@ -47,11 +47,11 @@ out = pdf( -1 );
 
 x = [ 0, 0.5, 1, 1.5, 2, 2.5 ];
 out = pdf( x );
-// returns [...]
+// returns [ 0.5, ~0.303, ~0.184, ~0.112, ~0.068, ~0.041 ]
 
 x = new Int8Array( x );
 out = pdf( x );
-// returns Float64Array( [...] )
+// returns Float64Array( [0.5,0.5,~0.184,~0.184,~0.068,~0.068] )
 
 x = new Int16Array( 6 );
 for ( i = 0; i < 6; i++ ) {
@@ -66,10 +66,11 @@ mat = matrix( x, [3,2], 'int16' );
 
 out = pdf( mat );
 /*
-	[
-
-	   ]
+	[ 0.5 0.5
+	  ~0.184 ~0.184
+	  ~0.068 ~0.068 ]
 */
+
 ```
 
 The function accepts the following `options`:
@@ -82,7 +83,7 @@ The function accepts the following `options`:
 *	__path__: [deepget](https://github.com/kgryte/utils-deep-get)/[deepset](https://github.com/kgryte/utils-deep-set) key path.
 *	__sep__: [deepget](https://github.com/kgryte/utils-deep-get)/[deepset](https://github.com/kgryte/utils-deep-set) key path separator. Default: `'.'`.
 
-A [Laplace](https://en.wikipedia.org/wiki/Laplace_distribution) distribution is a function of 2 parameter(s): `mu`(location parameter) and `b`(scale parameter). By default, `mu` is equal to `0` and `b` is equal to `1`. To adjust either parameter, set the corresponding option(s).
+A [Laplace](https://en.wikipedia.org/wiki/Laplace_distribution) distribution is a function of two parameters: `mu`(location parameter) and `b > 0`(scale parameter). By default, `mu` is equal to `0` and `b` is equal to `1`. To adjust either parameter, set the corresponding option.
 
 ``` javascript
 var x = [ 0, 0.5, 1, 1.5, 2, 2.5 ];
@@ -91,7 +92,8 @@ var out = pdf( x, {
 	'mu': 7,
 	'b': 2,
 });
-// returns [...]
+// returns [ ~0.008, 0.01, ~0.012, ~0.016, ~0.021, ~0.026 ]
+
 ```
 
 For non-numeric `arrays`, provide an accessor `function` for accessing `array` values.
@@ -113,7 +115,8 @@ function getValue( d, i ) {
 var out = pdf( data, {
 	'accessor': getValue
 });
-// returns [...]
+// returns [ 0.5, ~0.303, ~0.184, ~0.112, ~0.068, ~0.041 ]
+
 ```
 
 
@@ -135,12 +138,12 @@ var out = pdf( data, {
 });
 /*
 	[
-		{'x':[0,]},
-		{'x':[1,]},
-		{'x':[2,]},
-		{'x':[3,]},
-		{'x':[4,]},
-		{'x':[5,]}
+		{'x':[0,0.5]},
+		{'x':[1,~0.303]},
+		{'x':[2,~0.184]},
+		{'x':[3,~0.112]},
+		{'x':[4,~0.068]},
+		{'x':[5,~0.041]}
 	]
 */
 
@@ -156,15 +159,16 @@ var x, out;
 x = new Int8Array( [0,1,2,3,4] );
 
 out = pdf( x, {
-	'dtype': 'int32'
+	'dtype': 'float32'
 });
-// returns Int32Array( [...] )
+// returns Float32Array( [0.5,~0.184,~0.068,~0.025,~0.009] )
 
 // Works for plain arrays, as well...
 out = pdf( [0,0.5,1,1.5,2], {
 	'dtype': 'uint8'
 });
-// returns Uint8Array( [...] )
+// returns Uint8Array( [0,0,0,0,0] )
+
 ```
 
 By default, the function returns a new data structure. To mutate the input data structure (e.g., when input values can be discarded or when optimizing memory usage), set the `copy` option to `false`.
@@ -181,29 +185,29 @@ x = [ 0, 0.5, 1, 1.5, 2 ];
 out = pdf( x, {
 	'copy': false
 });
-// returns [...]
+// returns [ 0.5, ~0.303, ~0.184, ~0.112, ~0.068 ]
 
 bool = ( x === out );
 // returns true
 
-x = new Int16Array( 6 );
+x = new Float32Array( 6 );
 for ( i = 0; i < 6; i++ ) {
-	x[ i ] = i*0.5;
+	x[ i ] = i * 0.5;
 }
-mat = matrix( x, [3,2], 'int16' );
+mat = matrix( x, [3,2], 'float32' );
 /*
-	[ 0  0.5
-	  1  1.5
-	  2  2.5 ]
+	[ 0 0.5
+	  1 1.5
+	  2 2.5 ]
 */
 
 out = pdf( mat, {
 	'copy': false
 });
 /*
-	[
-
-	   ]
+	[ 0.5 ~0.303
+	  ~0.184 ~0.112
+	  ~0.068 ~0.041 ]
 */
 
 bool = ( mat === out );
